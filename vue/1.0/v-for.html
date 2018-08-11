@@ -1,0 +1,31 @@
+<html>
+	<head>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	
+	
+		<title>你好,vue!</title>
+	</head>
+	<body>
+		<div id="app">
+			<span v-if="seen" v-bind:title="message">悬停以查看消息</span>
+			<p v-for="list in names">
+				{{list.name}}
+			</p>
+		</div>
+		
+		<script>
+			var app = new Vue({
+				el: '#app',
+				data: {
+					message: '页面加载于'+new Date().toString(),
+					seen: true,
+					names:[
+						{name: '王欢'},
+						{name: 'lyq'},
+						{name: 'lyqwxf'}
+					]
+				}
+			});
+		</script>
+	</body>
+</html>
