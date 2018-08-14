@@ -11,16 +11,25 @@
 			<input type="button" v-on:click="addName" value="提交" />
 		
 			<ul>
-				<li v-for="name in names">{{name}}</li>
+				<todo-list v-for="name in names" v-bind:content="name"></todo-list>
 			</ul>
 		</div>
 		
 		<script>
-		
+			var TodoList = {
+				props: ['content'],
+				template: '<li>{{content}}</li>'
+			}
+			
+			
 			var app = new Vue({
 				el: '#app',
+				components: {
+					'TodoList': TodoList
+				},
 				data: {
-					names: ['wang','qing']
+					names: ['wang','qing'],
+					nameInput: ''
 				},
 				methods: {
 					addName: function() {
