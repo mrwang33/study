@@ -1,0 +1,34 @@
+<html>
+	<head>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	
+	
+		<title>你好,vue!</title>
+	</head>
+	<body>
+		<div id="app">
+			<input name="nameInput" v-model="nameInput" />
+			<input type="button" v-on:click="addName" value="提交" />
+		
+			<ul>
+				<li v-for="name in names">{{name}}</li>
+			</ul>
+		</div>
+		
+		<script>
+		
+			var app = new Vue({
+				el: '#app',
+				data: {
+					names: ['wang','qing']
+				},
+				methods: {
+					addName: function() {
+						this.names.push(this.nameInput);
+						this.nameInput = '';
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

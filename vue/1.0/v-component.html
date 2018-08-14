@@ -1,0 +1,30 @@
+<html>
+	<head>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	
+	
+		<title>你好,vue!</title>
+	</head>
+	<body>
+		<div id="app">
+			<my-component v-for="student in students" v-bind:comp="student" v-bind:key="student.id"></my-component>
+		</div>
+		
+		<script>
+			Vue.component('my-component',{
+				props: ['comp'],
+				template: '<p>{{comp.name}}</p>'
+			});
+		
+			var app = new Vue({
+				el: '#app',
+				data: {
+					students: [
+						{id: 1,name: 'wanghuan'},
+						{id: 2,name: 'wxf'},
+					]
+				}
+			});
+		</script>
+	</body>
+</html>
