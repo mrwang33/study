@@ -11,14 +11,20 @@
 			<input type="button" v-on:click="addName" value="提交" />
 		
 			<ul>
-				<todo-list v-for="name in names" v-bind:content="name"></todo-list>
+				<todo-list v-for="name in names" v-bind:content="name" @delete="deleteName" ></todo-list>
 			</ul>
 		</div>
 		
 		<script>
 			var TodoList = {
 				props: ['content'],
-				template: '<li>{{content}}</li>'
+				template: '<li @click="nameClick">{{content}}</li>',
+				methods: {
+					nameClick: function() {
+						this.$emit("delete",this.content);
+					}
+				}
+				
 			}
 			
 			
@@ -28,13 +34,16 @@
 					'TodoList': TodoList
 				},
 				data: {
-					names: ['wang','qing'],
+					names: [],
 					nameInput: ''
 				},
 				methods: {
 					addName: function() {
 						this.names.push(this.nameInput);
 						this.nameInput = '';
+					},
+					deleteName: function() {
+						this.names.pop(this.content);
 					}
 				}
 			});
