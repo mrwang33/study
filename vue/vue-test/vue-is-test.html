@@ -1,0 +1,34 @@
+<html>
+	<head>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	
+	
+		<title>你好,vue!</title>
+	</head>
+	<body>
+		<div id="app">
+			<table>
+				<tbody>
+					<!-- <my-template></my-template> -->
+					<tr is="my-template"></tr>
+				</tbody>
+			</table>
+		
+		
+		</div>
+		
+		<script>
+			Vue.component('my-template',{
+				// 子组件定义数据必须是函数
+				data: function() {
+					return {message: 'hello'}
+				},
+				template: '<tr><td>{{message}}</td></tr>'
+			})
+			
+			var app = new Vue({
+				el: '#app'
+			});
+		</script>
+	</body>
+</html>

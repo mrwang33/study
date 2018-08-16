@@ -1,0 +1,45 @@
+<html>
+	<head>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	
+	
+		<title>你好,vue!</title>
+	</head>
+	<body>
+		<div id="app">
+			<my-template :content="0" @cli="caculate"></my-template>
+			<my-template :content="0" @cli="caculate"></my-template>
+			{{total}}
+		</div>
+		
+		<script>
+			Vue.component('my-template',{
+				props: ['content'],
+				// 子组件定义数据必须是函数
+				data: function() {
+					return {number: this.content}
+				},
+				template: '<div @click="btnClickHandler">{{number}}</div>',
+				methods: {
+					btnClickHandler: function() {
+						this.number++;
+						this.$emit('cli',1);
+					}
+				}
+
+			})
+			
+			var app = new Vue({
+				el: '#app',
+				data: {
+					total: 0
+				},
+				methods: {
+					caculate: function(number) {
+						this.total += number;
+					}
+				}
+			});
+		</script>
+	</body>
+</html>
