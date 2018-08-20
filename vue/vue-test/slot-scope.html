@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>vue插槽</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+  <div id="app">
+	<test-com>
+		<li slot-scope="props">{{props.item}}</li>
+	</test-com>
+  </div>
+
+  <script>
+	Vue.component('test-com',{
+		data: function() {
+			return {
+				names: ['wang','liang','xixix']
+			}
+		},
+		template: '<ul><slot v-for="name in names" :item=name></slot></ul>'
+	});
+  
+  
+    var app = new Vue({
+      el: '#app'
+    })
+  </script>
+</body>
+</html>
