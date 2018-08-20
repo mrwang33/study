@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>vue-component-v-once</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+  <div id="app">
+	<!-- 第一种做法 -->
+	<!-- <component-one v-if="type==='component-one'"></component-one> -->
+	<!-- <component-two v-if="type==='component-two'"></component-two> -->
+	<!-- 第二种做法 -->
+	<component :is="type"></component>
+	<button @click="change">click here to change div</button>
+  </div>
+
+  <script>
+	Vue.component('component-one',{
+		// 在标签里加上v-once可以让下次渲染时直接从内存里读取 可以提高性能
+		template: '<div v-once>hello one</div>'
+	});
+	
+	Vue.component('component-two',{
+		template: '<div v-once>hello two</div>'
+	});
+  
+  
+    var app = new Vue({
+		el: '#app',
+		data: {
+			type: 'component-one'
+		},
+		methods: {
+			change: function() {
+				this.type = this.type==='component-one' ? 'component-two' : 'component-one';
+			}
+		}
+	  
+    })
+  </script>
+</body>
+</html>
