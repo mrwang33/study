@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>vue参数校验</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+  <div id="app">
+	<test-com :content="'123'"></test-com>
+  </div>
+
+  <script>
+	Vue.component('test-com',{
+		props: {
+			// 方式1
+			// content:[String,Number]
+			content: {
+				// 类型
+				type: String,
+				// 是否必须
+				required: false,
+				// 默认值
+				default: 'hello world',
+				// 自定义校验器
+				validator: function(val) {
+					return val.length > 1;
+				}
+			}
+			
+		},
+		template: '<div>{{content}}</div>'
+	});
+  
+  
+    var app = new Vue({
+      el: '#app'
+    })
+  </script>
+</body>
+</html>
