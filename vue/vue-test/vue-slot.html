@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>vue插槽</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+  <div id="app">
+	<test-com :content="'hello this world'">
+		<p class="header" slot="header">header</p>
+		<p class="footer" slot="footer">footer</p>
+	</test-com>
+  </div>
+
+  <script>
+	Vue.component('test-com',{
+		props: {
+			// 方式1
+			// content:[String,Number]
+			content: {
+				// 类型
+				type: String,
+				// 是否必须
+				required: false,
+				// 默认值
+				default: 'hello world',
+				// 自定义校验器
+				validator: function(val) {
+					return val.length > 1;
+				}
+			}
+			
+		},
+		template: '<div><slot name="header"></slot><p>{{content}}</p><slot name="footer"></slot></div>'
+	});
+  
+  
+    var app = new Vue({
+      el: '#app',
+	  methods: {
+		handlerClick: function() {
+			alert('hello world!!');
+		}
+	  }
+    })
+  </script>
+</body>
+</html>
