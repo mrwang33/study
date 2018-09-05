@@ -1,6 +1,6 @@
 <template>
   <div class="icon-container">
-    <swiper ref="mySwiper">
+    <swiper :options="iconSwiperOption" ref="mySwiper">
       <swiper-slide v-for="(pageNum,index) in imgPage.pageSize" :key="index">
         <div class="icon-content" v-for="imgItem in imgPage.content[index]" :key="imgItem.id">
           <div class="icon-img">
@@ -9,6 +9,7 @@
           <p class="icon-desc">{{imgItem.desc}}</p>
         </div>
       </swiper-slide>
+      <div class="swiper-pagination"  slot="pagination"></div>
     </swiper>
   </div>
 </template>
@@ -73,7 +74,11 @@ export default {
             'http://img1.qunarzz.com/piao/fusion/1803/75/eca3ce656c886502.png',
           desc: '千岛湖'
         }
-      ]
+      ],
+      iconSwiperOption: {
+        pagination: '.swiper-pagination',
+        loop: true
+      }
     }
   },
   computed: {
